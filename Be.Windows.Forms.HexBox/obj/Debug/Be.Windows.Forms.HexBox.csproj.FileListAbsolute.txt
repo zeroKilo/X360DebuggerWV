@@ -1,0 +1,9 @@
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\bin\Debug\Be.Windows.Forms.HexBox.dll
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\bin\Debug\Be.Windows.Forms.HexBox.pdb
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\bin\Debug\Be.Windows.Forms.HexBox.xml
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.HexBox.csprojResolveAssemblyReference.cache
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.HexBox.resources
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.Properties.Resources.resources
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.HexBox.csproj.GenerateResource.Cache
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.HexBox.dll
+D:\CODE\c#\X360DebuggerWV\Be.Windows.Forms.HexBox\obj\Debug\Be.Windows.Forms.HexBox.pdb

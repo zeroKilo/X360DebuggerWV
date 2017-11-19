@@ -33,6 +33,7 @@ namespace X360DebuggerWV
             OpenWindowCPU();
             OpenWindowModules();
             OpenWindowTrace();
+            OpenWindowMemRegion();
         }
 
         private void generalInfosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +64,11 @@ namespace X360DebuggerWV
         private void traceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenWindowTrace();
+        }
+
+        private void memoryRegionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenWindowMemRegion();
         }
 
         private void OpenWindowInfos()
@@ -98,6 +104,11 @@ namespace X360DebuggerWV
         private void OpenWindowTrace()
         {
             OpenWindow(new WinTrace());
+        }
+
+        private void OpenWindowMemRegion()
+        {
+            OpenWindow(new WinMemoryRegions());
         }
 
         private void OpenWindow(Form f)

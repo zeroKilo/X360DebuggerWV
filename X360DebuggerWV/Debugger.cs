@@ -275,5 +275,64 @@ namespace X360DebuggerWV
                     return i;
             return -1;
         }
+
+        public static string[] GetModuleSections(int n)
+        {
+            IXboxModule mod = jtag.DebugTarget.Modules[n];
+            List<string> result = new List<string>();
+            foreach (IXboxSection sec in mod.Sections)
+            {
+                StringBuilder sb = new StringBuilder();
+                XBOX_SECTION_INFO info = sec.SectionInfo;
+                string flags = "";
+                if ((info.Flags & XboxSectionInfoFlags.Executable) != 0) flags += "Executable ";
+                if ((info.Flags & XboxSectionInfoFlags.Loaded) != 0) flags += "Loaded ";
+                if ((info.Flags & XboxSectionInfoFlags.Readable) != 0) flags += "Readable ";
+                if ((info.Flags & XboxSectionInfoFlags.Uninitialized) != 0) flags += "Uninitialized ";
+                if ((info.Flags & XboxSectionInfoFlags.Writeable) != 0) flags += "Writeable ";
+                sb.AppendFormat("Section {0}: BaseAddress=0x{2} Size=0x{3} \"{1}\" Flags={4}", info.Index, info.Name, info.BaseAddress.ToString("X8"), info.Size.ToString("X8"), flags);
+                result.Add(sb.ToString());
+            }
+            return result.ToArray();
+        }
+
+        public static string[] GetMemoryRegionInfos()
+        {
+            List<string> result = new List<string>();
+            List<XBOX_SECTION_INFO> sections = new List<XBOX_SECTION_INFO> ();
+            List<string> secModuleNames = new List<string>();
+
+            foreach (IXboxModule mod in jtag.DebugTarget.Modules)
+                foreach (IXboxSection sec in mod.Sections)
+                {
+                    secModuleNames.Add(mod.ModuleInfo.Name);
+                    sections.Add(sec.SectionInfo);
+                }
+            foreach (IXboxMemoryRegion reg in jtag.DebugTarget.MemoryRegions)
+            {
+                string contains = "";
+                uint baseAddress = (uint)reg.BaseAddress;
+                uint regionSize = (uint)reg.RegionSize;
+                for (int i = 0; i < sections.Count; i++)
+                    if (sections[i].BaseAddress >= baseAddress && sections[i].BaseAddress + sections[i].Size <= baseAddress + regionSize)
+                        contains += "[" + secModuleNames[i] + "->" + sections[i].Name + "]";
+                string flags = " ";
+                if ((reg.Flags & XboxMemoryRegionFlags.NoAccess) != 0) flags += "NoAccess ";
+                if ((reg.Flags & XboxMemoryRegionFlags.ReadOnly) != 0) flags += "ReadOnly ";
+                if ((reg.Flags & XboxMemoryRegionFlags.ReadWrite) != 0) flags += "ReadWrite ";
+                if ((reg.Flags & XboxMemoryRegionFlags.WriteCopy) != 0) flags += "WriteCopy ";
+                if ((reg.Flags & XboxMemoryRegionFlags.Execute) != 0) flags += "Execute ";
+                if ((reg.Flags & XboxMemoryRegionFlags.ExecuteRead) != 0) flags += "ExecuteRead ";
+                if ((reg.Flags & XboxMemoryRegionFlags.ExecuteReadWrite) != 0) flags += "ExecuteReadWrite ";
+                if ((reg.Flags & XboxMemoryRegionFlags.ExecuteWriteCopy) != 0) flags += "ExecuteWriteCopy ";
+                if ((reg.Flags & XboxMemoryRegionFlags.Guard) != 0) flags += "Guard ";
+                if ((reg.Flags & XboxMemoryRegionFlags.NoCache) != 0) flags += "NoCache ";
+                if ((reg.Flags & XboxMemoryRegionFlags.WriteCombine) != 0) flags += "WriteCombine ";
+                if ((reg.Flags & XboxMemoryRegionFlags.UserReadOnly) != 0) flags += "UserReadOnly ";
+                if ((reg.Flags & XboxMemoryRegionFlags.UserReadWrite) != 0) flags += "UserReadWrite ";
+                result.Add("BaseAddress=0x" + reg.BaseAddress.ToString("X8") + " RegionSize=0x" + reg.RegionSize.ToString("X8") + " Flags=\"" + flags + (contains != "" ? "\" Contains=\"" + contains + "\"" : ""));
+            }
+            return result.ToArray();
+        }
     }
 }

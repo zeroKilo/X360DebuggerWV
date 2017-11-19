@@ -36,11 +36,12 @@
             this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnModuleLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnThreadCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordBreakpointsToTraceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.memoryRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             this.generalInfosToolStripMenuItem,
             this.fileBrowserToolStripMenuItem,
             this.memoryDumpToolStripMenuItem,
+            this.memoryRegionsToolStripMenuItem,
             this.modulesToolStripMenuItem,
             this.traceToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
@@ -70,30 +72,37 @@
             // generalInfosToolStripMenuItem
             // 
             this.generalInfosToolStripMenuItem.Name = "generalInfosToolStripMenuItem";
-            this.generalInfosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.generalInfosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.generalInfosToolStripMenuItem.Text = "General Infos";
             this.generalInfosToolStripMenuItem.Click += new System.EventHandler(this.generalInfosToolStripMenuItem_Click);
             // 
             // fileBrowserToolStripMenuItem
             // 
             this.fileBrowserToolStripMenuItem.Name = "fileBrowserToolStripMenuItem";
-            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.fileBrowserToolStripMenuItem.Text = "File Browser";
             this.fileBrowserToolStripMenuItem.Click += new System.EventHandler(this.fileBrowserToolStripMenuItem_Click);
             // 
             // memoryDumpToolStripMenuItem
             // 
             this.memoryDumpToolStripMenuItem.Name = "memoryDumpToolStripMenuItem";
-            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.memoryDumpToolStripMenuItem.Text = "Memory Dump";
             this.memoryDumpToolStripMenuItem.Click += new System.EventHandler(this.memoryDumpToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.modulesToolStripMenuItem.Text = "Modules";
             this.modulesToolStripMenuItem.Click += new System.EventHandler(this.modulesToolStripMenuItem_Click);
+            // 
+            // traceToolStripMenuItem
+            // 
+            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
+            this.traceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.traceToolStripMenuItem.Text = "Trace";
+            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
             // 
             // optionToolStripMenuItem
             // 
@@ -129,12 +138,12 @@
             this.recordBreakpointsToTraceToolStripMenuItem.Text = "Record Breakpoints to Trace";
             this.recordBreakpointsToTraceToolStripMenuItem.Click += new System.EventHandler(this.recordBreakpointsToTraceToolStripMenuItem_Click);
             // 
-            // traceToolStripMenuItem
+            // memoryRegionsToolStripMenuItem
             // 
-            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
-            this.traceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.traceToolStripMenuItem.Text = "Trace";
-            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
+            this.memoryRegionsToolStripMenuItem.Name = "memoryRegionsToolStripMenuItem";
+            this.memoryRegionsToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.memoryRegionsToolStripMenuItem.Text = "Memory Regions";
+            this.memoryRegionsToolStripMenuItem.Click += new System.EventHandler(this.memoryRegionsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -167,6 +176,7 @@
         private System.Windows.Forms.ToolStripMenuItem breakOnThreadCreateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recordBreakpointsToTraceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem memoryRegionsToolStripMenuItem;
     }
 }
 

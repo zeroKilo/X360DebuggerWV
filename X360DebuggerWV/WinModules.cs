@@ -71,5 +71,49 @@ namespace X360DebuggerWV
             f.toolStripTextBox1.Text = addr.ToString("X8");
             f.GotoAddress(addr);
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int n = listBox1.SelectedIndex;
+            if (n == -1) return;
+            listBox2.Items.AddRange(Debugger.GetModuleSections(n));
+        }
+
+        private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
+        {
+            int n = listBox2.SelectedIndex;
+            if (n == -1) e.Cancel = true;
+        }
+
+        private void previewInMemoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int n = listBox2.SelectedIndex;
+            string line = listBox2.Items[n].ToString();
+            string[] parts = line.Split(' ');
+            parts = parts[2].Split('x');
+            WinMemoryDump f = new WinMemoryDump();
+            f.toolStripTextBox1.Text = parts[1];
+            f.toolStripTextBox2.Text = "100";
+            f.MdiParent = this.MdiParent;
+            f.Show();
+            f.Dump();
+        }
+
+        private void viewFullInMemoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int n = listBox2.SelectedIndex;
+            string line = listBox2.Items[n].ToString();
+            string[] parts = line.Split(' ');
+            parts = parts[2].Split('x');
+            string addr = parts[1];
+            parts = line.Split(' ');
+            parts = parts[3].Split('x');
+            WinMemoryDump f = new WinMemoryDump();
+            f.toolStripTextBox1.Text = addr;
+            f.toolStripTextBox2.Text = parts[1];
+            f.MdiParent = this.MdiParent;
+            f.Show();
+            f.Dump();
+        }
     }
 }

@@ -94,6 +94,12 @@
     <Compile Include="WinMemoryDump.Designer.cs">
       <DependentUpon>WinMemoryDump.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinMemoryRegions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinMemoryRegions.Designer.cs">
+      <DependentUpon>WinMemoryRegions.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinModules.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinMemoryDump.resx">
       <DependentUpon>WinMemoryDump.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinMemoryRegions.resx">
+      <DependentUpon>WinMemoryRegions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinModules.resx">
       <DependentUpon>WinModules.cs</DependentUpon>

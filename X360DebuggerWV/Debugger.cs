@@ -22,6 +22,7 @@ namespace X360DebuggerWV
         public static List<uint> breakPoints;
         public static bool breakOnModuleLoad = false;
         public static bool breakOnThreadCreate = false;
+        public static bool recordTrace = false;
 
         public static bool Init()
         {
@@ -35,6 +36,8 @@ namespace X360DebuggerWV
                     con.DebugTarget.ConnectAsDebugger("X360 Debugger WV", XboxDebugConnectFlags.Force);
                     isRunning = true;
                     breakPoints = new List<uint>();
+                    if (File.Exists("trace_log.txt"))
+                        File.Delete("trace_log.txt");
                 }
                 return result;
             }
@@ -49,6 +52,11 @@ namespace X360DebuggerWV
             switch (EventCode)
             {
                 case XboxDebugEventType.ExecutionBreak:
+                    if (recordTrace)
+                    {
+                        int n = GetThreadIndexById(EventInfo.Info.Thread.ThreadId);
+                        Tracer.AppendLog(EventInfo.Info.Address, GetThreadRegisters32(n), GetThreadRegisters64(n));
+                    }
                     breakThreadId = EventInfo.Info.Thread.ThreadId;
                     refreshCPU = true;
                     isRunning = false;

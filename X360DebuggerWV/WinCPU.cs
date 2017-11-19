@@ -167,5 +167,10 @@ namespace X360DebuggerWV
             Debugger.AddBreakpoint((uint)reg32[1] + 4);
             Debugger.Play();
         }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            RefreshButtons();
+        }
     }
 }

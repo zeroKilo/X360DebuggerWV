@@ -32,7 +32,7 @@ namespace X360DebuggerWV
             OpenWindowFileBrowser();
             OpenWindowCPU();
             OpenWindowModules();
-            
+            OpenWindowTrace();
         }
 
         private void generalInfosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,6 +58,11 @@ namespace X360DebuggerWV
         private void modulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenWindowModules();
+        }
+
+        private void traceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenWindowTrace();
         }
 
         private void OpenWindowInfos()
@@ -90,6 +95,11 @@ namespace X360DebuggerWV
             OpenWindow(new WinModules());
         }
 
+        private void OpenWindowTrace()
+        {
+            OpenWindow(new WinTrace());
+        }
+
         private void OpenWindow(Form f)
         {
             f.MdiParent = this;
@@ -106,6 +116,12 @@ namespace X360DebuggerWV
         {
             Debugger.breakOnThreadCreate = breakOnThreadCreateToolStripMenuItem.Checked;
             Log.WriteLine("Info : Breaking on Thread Create = " + (Debugger.breakOnThreadCreate ? "ON" : "OFF"));
+        }
+
+        private void recordBreakpointsToTraceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debugger.recordTrace = recordBreakpointsToTraceToolStripMenuItem.Checked;
+            Log.WriteLine("Info : Record Trace = " + (Debugger.recordTrace ? "ON" : "OFF"));
         }
     }
 }

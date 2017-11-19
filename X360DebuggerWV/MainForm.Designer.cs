@@ -39,6 +39,8 @@
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnModuleLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnThreadCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordBreakpointsToTraceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +61,8 @@
             this.generalInfosToolStripMenuItem,
             this.fileBrowserToolStripMenuItem,
             this.memoryDumpToolStripMenuItem,
-            this.modulesToolStripMenuItem});
+            this.modulesToolStripMenuItem,
+            this.traceToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.windowToolStripMenuItem.Text = "Window";
@@ -96,7 +99,8 @@
             // 
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.breakOnModuleLoadToolStripMenuItem,
-            this.breakOnThreadCreateToolStripMenuItem});
+            this.breakOnThreadCreateToolStripMenuItem,
+            this.recordBreakpointsToTraceToolStripMenuItem});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
             this.optionToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.optionToolStripMenuItem.Text = "Option";
@@ -105,7 +109,7 @@
             // 
             this.breakOnModuleLoadToolStripMenuItem.CheckOnClick = true;
             this.breakOnModuleLoadToolStripMenuItem.Name = "breakOnModuleLoadToolStripMenuItem";
-            this.breakOnModuleLoadToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.breakOnModuleLoadToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.breakOnModuleLoadToolStripMenuItem.Text = "Break on Module Load";
             this.breakOnModuleLoadToolStripMenuItem.Click += new System.EventHandler(this.breakOnModuleLoadToolStripMenuItem_Click);
             // 
@@ -113,9 +117,24 @@
             // 
             this.breakOnThreadCreateToolStripMenuItem.CheckOnClick = true;
             this.breakOnThreadCreateToolStripMenuItem.Name = "breakOnThreadCreateToolStripMenuItem";
-            this.breakOnThreadCreateToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.breakOnThreadCreateToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.breakOnThreadCreateToolStripMenuItem.Text = "Break on Thread Create";
             this.breakOnThreadCreateToolStripMenuItem.Click += new System.EventHandler(this.breakOnThreadCreateToolStripMenuItem_Click);
+            // 
+            // recordBreakpointsToTraceToolStripMenuItem
+            // 
+            this.recordBreakpointsToTraceToolStripMenuItem.CheckOnClick = true;
+            this.recordBreakpointsToTraceToolStripMenuItem.Name = "recordBreakpointsToTraceToolStripMenuItem";
+            this.recordBreakpointsToTraceToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.recordBreakpointsToTraceToolStripMenuItem.Text = "Record Breakpoints to Trace";
+            this.recordBreakpointsToTraceToolStripMenuItem.Click += new System.EventHandler(this.recordBreakpointsToTraceToolStripMenuItem_Click);
+            // 
+            // traceToolStripMenuItem
+            // 
+            this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
+            this.traceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.traceToolStripMenuItem.Text = "Trace";
+            this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -146,6 +165,8 @@
         private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem breakOnModuleLoadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem breakOnThreadCreateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recordBreakpointsToTraceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem traceToolStripMenuItem;
     }
 }
 

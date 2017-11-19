@@ -16,7 +16,7 @@ File Browser: preview/save files, run xex executable
 
 Modules: show base address in dump, show entry point in dump or cpu, explore sections
 
-Memory Regions: browse all allocated memory sections, see which sections are inside
+Memory Regions: browse all allocated memory sections, see which module sections are inside
 
 Memory Dump: dump memory or write back to it with hex editor, load/save from/to file, hex pattern search
 

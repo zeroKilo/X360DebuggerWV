@@ -26,4 +26,4 @@ Trace: Load/save/clear and see register changes
 
 Overall Options: break on Module Load, break on Thread Create, record breakpoints to trace
 
-<img src="https://gifs.com/trailerfy/p1H0QkF21Q4"></img>
+<img src="//gifs.com/auto-video/player/p1H0QkF21Q4"></img>

@@ -20,7 +20,7 @@ Memory Regions: browse all allocated memory sections, see which module sections 
 
 Memory Dump: dump memory or write back to it with hex editor, load/save from/to file, hex pattern search
 
-CPU: play, pause, step(if breakpoint was reached, not yet working for branching!), disassembly of ppc, current threads, current thread's registers
+CPU: play, pause, step(if breakpoint was reached, not yet working for branching!), disassembly of ppc, current threads, current thread's registers, find end of a subfunction and export to XEXDecompiler 3 (integrated now)
 
 Trace: Load/save/clear and see register changes
 

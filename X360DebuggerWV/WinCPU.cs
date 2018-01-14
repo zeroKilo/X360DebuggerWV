@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -102,18 +103,50 @@ namespace X360DebuggerWV
 
         public void GotoAddress(uint address)
         {
-            uint count = 100;
-            uint pos = currAddress = address;
+            currAddress = address;
+            uint pos = address;
             listBox2.Items.Clear();
-            byte[] buf = Debugger.GetMemoryDump(pos, 4 * count);
-            string[] opDisAsm = Disassembler.Disassemble(buf);
-            for (uint i = 0; i < count; i++)
+            byte[] buf = GetFunctionBytes(address, toolStripButton6.Checked);
+            string[] opDisAsm = Disassembler.Disassemble(buf, pb1);
+            for (uint i = 0; i < opDisAsm.Length; i++)
             {
                 string opBytes = buf[i * 4].ToString("X2") + " " + buf[i * 4 + 1].ToString("X2") + " " + buf[i * 4 + 2].ToString("X2") + " " + buf[i * 4 + 3].ToString("X2");
                 string hasBP = Debugger.breakPoints.Contains(pos) ? "* " : "";
-                listBox2.Items.Add(hasBP + pos.ToString("X8") + "\t: " + opBytes + "\t" + opDisAsm[i]);
+                string comment = "";
+                uint u = PPC.SwapEndian(BitConverter.ToUInt32(buf, (int)i * 4));
+                uint target;
+                if (PPC.isBranchOpc(u) && PPC.calcBranchTarget(u, pos, out target))
+                    comment = "\t#[loc_" + target.ToString("X8") + "]";
+                listBox2.Items.Add(hasBP + pos.ToString("X8") + "\t: " + opBytes + "\t" + opDisAsm[i] + comment);
                 pos += 4;
             }
+        }
+
+        public byte[] GetFunctionBytes(uint address, bool all = true)
+        {
+            MemoryStream m = new MemoryStream();
+            uint pos = address;
+            bool run = true;
+            while (run)
+            {
+                byte[] buff = Debugger.GetMemoryDump(pos, 1000);
+                for (int i = 0; i < 250; i++)
+                {
+                    m.Write(buff, i * 4, 4);
+                    if (BitConverter.ToUInt32(buff, i * 4) == 0)
+                    {
+                        run = false;
+                        break;
+                    }
+                }
+                pos += 1000;
+                if (pos - address > 0x10000 || !all) break;
+            }
+            byte[] result = m.ToArray();
+            int size = Disassembler.GetFunctionSize(result, address);
+            m = new MemoryStream();
+            m.Write(result, 0, size * 4 + 4);
+            return m.ToArray();
         }
 
         private void setBreakpointToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,6 +204,18 @@ namespace X360DebuggerWV
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             RefreshButtons();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            byte[] buf = GetFunctionBytes(currAddress);
+            string[] opDisAsm = Disassembler.Disassemble(buf, pb1);
+            string content = Disassembler.ExportForDecompiling(opDisAsm, buf, currAddress);
+            File.WriteAllText("export\\exported.asm", content);
+            File.WriteAllText("export\\functions.txt", currAddress.ToString("X8") + ";sub_" + currAddress.ToString("X8"));
+            File.WriteAllBytes("export\\" + currAddress.ToString("X8") + ".bin", buf);
+            if (File.Exists("export\\XEXDecompiler3.exe"))
+                Helper.RunShell("export\\XEXDecompiler3.exe", "export\\exported.asm");
         }
     }
 }

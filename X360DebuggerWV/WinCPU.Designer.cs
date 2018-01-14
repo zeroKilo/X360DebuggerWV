@@ -34,6 +34,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,11 +48,14 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pb1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -63,6 +67,7 @@
             this.splitContainer2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -74,7 +79,7 @@
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(808, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(888, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -108,6 +113,16 @@
             this.toolStripButton4.Text = "Step";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButton5.Text = "Refresh";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,8 +137,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(808, 498);
-            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.Size = new System.Drawing.Size(888, 476);
+            this.splitContainer1.SplitterDistance = 219;
             this.splitContainer1.TabIndex = 1;
             // 
             // listBox1
@@ -135,7 +150,7 @@
             this.listBox1.ItemHeight = 14;
             this.listBox1.Location = new System.Drawing.Point(0, 15);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(200, 483);
+            this.listBox1.Size = new System.Drawing.Size(219, 461);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -144,7 +159,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 15);
+            this.label1.Size = new System.Drawing.Size(219, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Threads";
             // 
@@ -164,8 +179,8 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox3);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(604, 498);
-            this.splitContainer2.SplitterDistance = 436;
+            this.splitContainer2.Size = new System.Drawing.Size(665, 476);
+            this.splitContainer2.SplitterDistance = 480;
             this.splitContainer2.TabIndex = 0;
             // 
             // listBox2
@@ -178,7 +193,7 @@
             this.listBox2.ItemHeight = 14;
             this.listBox2.Location = new System.Drawing.Point(0, 40);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(436, 458);
+            this.listBox2.Size = new System.Drawing.Size(480, 436);
             this.listBox2.TabIndex = 3;
             // 
             // contextMenuStrip1
@@ -217,10 +232,12 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripTextBox1,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripButton6,
+            this.toolStripButton7});
             this.toolStrip2.Location = new System.Drawing.Point(0, 15);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(436, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(480, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -245,12 +262,34 @@
             this.toolStripButton3.Text = "Goto";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.Checked = true;
+            this.toolStripButton6.CheckOnClick = true;
+            this.toolStripButton6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(102, 22);
+            this.toolStripButton6.Text = "disassemble to end";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(133, 22);
+            this.toolStripButton7.Text = "Open in XEXDecompiler...";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(436, 15);
+            this.label3.Size = new System.Drawing.Size(480, 15);
             this.label3.TabIndex = 1;
             this.label3.Text = "Memory";
             // 
@@ -264,7 +303,7 @@
             this.listBox3.ItemHeight = 14;
             this.listBox3.Location = new System.Drawing.Point(0, 15);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(164, 483);
+            this.listBox3.Size = new System.Drawing.Size(181, 461);
             this.listBox3.TabIndex = 4;
             this.listBox3.Click += new System.EventHandler(this.listBox3_Click);
             // 
@@ -273,7 +312,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 15);
+            this.label2.Size = new System.Drawing.Size(181, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Processor";
             // 
@@ -282,24 +321,30 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripButton5
+            // statusStrip1
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(49, 22);
-            this.toolStripButton5.Text = "Refresh";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pb1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 501);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(888, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // pb1
+            // 
+            this.pb1.Name = "pb1";
+            this.pb1.Size = new System.Drawing.Size(100, 16);
             // 
             // WinCPU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 523);
+            this.ClientSize = new System.Drawing.Size(888, 523);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.statusStrip1);
             this.Name = "WinCPU";
             this.Text = "CPU";
             this.toolStrip1.ResumeLayout(false);
@@ -316,6 +361,8 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +392,9 @@
         public System.Windows.Forms.ListBox listBox3;
         public System.Windows.Forms.ToolStripButton toolStripButton4;
         public System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar pb1;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        public System.Windows.Forms.ToolStripButton toolStripButton7;
     }
 }

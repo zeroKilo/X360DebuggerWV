@@ -204,6 +204,9 @@ namespace X360DebuggerWV
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             RefreshButtons();
+            Debugger.refreshCPU =
+            Debugger.refreshExecState =
+            Debugger.refreshThreads = true;
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)

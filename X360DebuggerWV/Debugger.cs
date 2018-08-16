@@ -69,11 +69,11 @@ namespace X360DebuggerWV
                 case XboxDebugEventType.ThreadCreate:
                     XBOX_THREAD_INFO t = EventInfo.Info.Thread.ThreadInfo;
                     Log.WriteLine("TID=" + t.ThreadId.ToString("X8") + " StartAddress=0x" + t.StartAddress.ToString("X8"));
-                    refreshThreads = true;
+                    //refreshThreads = true;
                     break;
                 case XboxDebugEventType.ThreadDestroy:
                     Log.WriteLine("TID=" + EventInfo.Info.Thread.ThreadId.ToString("X8"));
-                    refreshThreads = true;
+                    //refreshThreads = true;
                     break;
                 case XboxDebugEventType.ModuleLoad:
                     XBOX_MODULE_INFO m = EventInfo.Info.Module.ModuleInfo;
@@ -84,7 +84,7 @@ namespace X360DebuggerWV
                     Log.WriteLine("Name=\"" + m2.FullName + "\"");
                     break;
                 case XboxDebugEventType.DebugString:
-                    Log.WriteLine(EventInfo.Info.Message.Replace("\n", "\\n"));
+                    Log.WriteLine("\n" + EventInfo.Info.Message.Replace("\n", "\\n"));
                     break;
                 default:
                     Log.WriteLine("");

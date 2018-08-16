@@ -71,7 +71,6 @@ namespace X360DebuggerWV
                 result.AddRange(tmp);
                 pos += size;
                 pb.Value = (int)pos;
-                Application.DoEvents();
             }
             pb.Value = 0;
             return result.ToArray();

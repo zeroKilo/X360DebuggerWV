@@ -81,18 +81,25 @@ namespace X360DebuggerWV
         {
             int n = listBox1.SelectedIndex;
             if (n == -1) return;
-            long[] reg64 = Debugger.GetThreadRegisters64(n);
-            int[] reg32 = Debugger.GetThreadRegisters32(n);
-            listBox3.Items.Clear();
-            listBox3.Items.Add("MSR\t: " + reg32[0].ToString("X8"));
-            listBox3.Items.Add("IAR\t: " + reg32[1].ToString("X8"));
-            listBox3.Items.Add("LR\t: " + reg32[2].ToString("X8"));
-            listBox3.Items.Add("CR\t: " + reg32[3].ToString("X8"));
-            listBox3.Items.Add("XER\t: " + reg32[4].ToString("X8"));
-            listBox3.Items.Add("CTR\t: " + reg64[0].ToString("X16"));
-            for (int i = 0; i < 32; i++)
-                listBox3.Items.Add("R" + i + "\t: " + reg64[i + 1].ToString("X16"));
-            GotoAddress((uint)reg32[1]);
+            try
+            {
+                long[] reg64 = Debugger.GetThreadRegisters64(n);
+                int[] reg32 = Debugger.GetThreadRegisters32(n);
+                listBox3.Items.Clear();
+                listBox3.Items.Add("MSR\t: " + reg32[0].ToString("X8"));
+                listBox3.Items.Add("IAR\t: " + reg32[1].ToString("X8"));
+                listBox3.Items.Add("LR\t: " + reg32[2].ToString("X8"));
+                listBox3.Items.Add("CR\t: " + reg32[3].ToString("X8"));
+                listBox3.Items.Add("XER\t: " + reg32[4].ToString("X8"));
+                listBox3.Items.Add("CTR\t: " + reg64[0].ToString("X16"));
+                for (int i = 0; i < 32; i++)
+                    listBox3.Items.Add("R" + i + "\t: " + reg64[i + 1].ToString("X16"));
+                GotoAddress((uint)reg32[1]);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLine("Error: " + ex.Message);
+            }
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -194,7 +201,9 @@ namespace X360DebuggerWV
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             int n = Debugger.GetThreadIndexById(Debugger.breakThreadId);
-            if (n != -1) listBox1.SelectedIndex = n;
+            if (n == -1)
+                return;
+            listBox1.SelectedIndex = n;
             int[] reg32 = Debugger.GetThreadRegisters32(n);
             Debugger.RemoveBreakpoint((uint)reg32[1]);
             Debugger.AddBreakpoint((uint)reg32[1] + 4);

@@ -57,6 +57,8 @@ namespace X360DebuggerWV
 
         private static void con_OnStdNotify(XboxDebugEventType EventCode, IXboxEventInfo EventInfo)
         {
+            XBOX_THREAD_INFO t;
+            XBOX_MODULE_INFO m;
             if (EventCode == XboxDebugEventType.ModuleLoad && breakOnModuleLoad) Pause();
             if (EventCode == XboxDebugEventType.ThreadCreate && breakOnThreadCreate) Pause();
             Log.Write("Event: " + EventCode.ToString() + " ");
@@ -84,11 +86,11 @@ namespace X360DebuggerWV
                     break;
                 case XboxDebugEventType.ExecStateChange:
                     Log.WriteLine(EventInfo.Info.ExecState.ToString());
-                    isRunning = EventInfo.Info.ExecState != XboxExecutionState.Stopped;
+                    isRunning = EventInfo.Info.ExecState != XboxExecutionState.Stopped && EventInfo.Info.ExecState != XboxExecutionState.PendingTitle;
                     refreshExecState = true;
                     break;
                 case XboxDebugEventType.ThreadCreate:
-                    XBOX_THREAD_INFO t = EventInfo.Info.Thread.ThreadInfo;
+                    t = EventInfo.Info.Thread.ThreadInfo;
                     Log.WriteLine("TID=" + t.ThreadId.ToString("X8") + " StartAddress=0x" + t.StartAddress.ToString("X8"));
                     //refreshThreads = true;
                     break;
@@ -97,12 +99,12 @@ namespace X360DebuggerWV
                     //refreshThreads = true;
                     break;
                 case XboxDebugEventType.ModuleLoad:
-                    XBOX_MODULE_INFO m = EventInfo.Info.Module.ModuleInfo;
+                    m = EventInfo.Info.Module.ModuleInfo;
                     Log.WriteLine("Name=\"" + m.FullName + "\" BaseAddress=0x" + m.BaseAddress.ToString("X8"));
                     break;
                 case XboxDebugEventType.ModuleUnload:
-                    XBOX_MODULE_INFO m2 = EventInfo.Info.Module.ModuleInfo;
-                    Log.WriteLine("Name=\"" + m2.FullName + "\"");
+                    m = EventInfo.Info.Module.ModuleInfo;
+                    Log.WriteLine("Name=\"" + m.FullName + "\"");
                     break;
                 case XboxDebugEventType.DebugString:
                     Log.WriteLine("\n" + EventInfo.Info.Message.Replace("\n", "\\n"));

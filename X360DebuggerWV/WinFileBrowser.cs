@@ -133,5 +133,10 @@ namespace X360DebuggerWV
             hb1.ByteProvider = new DynamicByteProvider(new byte[0]);
             toolStripButton1.Enabled = false;
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Debugger.RunPausedXEX(currPreview);
+        }
     }
 }

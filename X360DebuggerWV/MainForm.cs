@@ -34,6 +34,7 @@ namespace X360DebuggerWV
             OpenWindowModules();
             OpenWindowTrace();
             OpenWindowMemRegion();
+            OpenWindowScreenshot();
         }
 
         private void generalInfosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,6 +112,11 @@ namespace X360DebuggerWV
             OpenWindow(new WinMemoryRegions());
         }
 
+        private void OpenWindowScreenshot()
+        {
+            OpenWindow(new WinScreenshot());
+        }
+
         private void OpenWindow(Form f)
         {
             f.MdiParent = this;
@@ -133,6 +139,16 @@ namespace X360DebuggerWV
         {
             Debugger.recordTrace = recordBreakpointsToTraceToolStripMenuItem.Checked;
             Log.WriteLine("Info : Record Trace = " + (Debugger.recordTrace ? "ON" : "OFF"));
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Debugger.Detach();
+        }
+
+        private void screenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenWindowScreenshot();
         }
     }
 }

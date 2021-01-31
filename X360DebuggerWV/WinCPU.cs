@@ -51,7 +51,7 @@ namespace X360DebuggerWV
                     if (n != -1)
                     {
                         listBox1.SelectedIndex = n;
-                        UpdateCurrrentThread();
+                        UpdateCurrentThread();
                     }
                     Debugger.refreshCPU = false;
                 }
@@ -74,10 +74,10 @@ namespace X360DebuggerWV
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateCurrrentThread();
+            UpdateCurrentThread();
         }
 
-        private void UpdateCurrrentThread()
+        private void UpdateCurrentThread()
         {
             int n = listBox1.SelectedIndex;
             if (n == -1) return;
@@ -219,6 +219,11 @@ namespace X360DebuggerWV
             File.WriteAllBytes("export\\" + currAddress.ToString("X8") + ".bin", buf);
             if (File.Exists("export\\XEXDecompiler3.exe"))
                 Helper.RunShell("export\\XEXDecompiler3.exe", "export\\exported.asm");
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            Debugger.Reboot();
         }
     }
 }

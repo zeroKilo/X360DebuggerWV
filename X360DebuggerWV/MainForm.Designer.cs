@@ -35,13 +35,14 @@
             this.generalInfosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.memoryRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnModuleLoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breakOnThreadCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordBreakpointsToTraceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.memoryRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.screenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,43 +65,51 @@
             this.memoryDumpToolStripMenuItem,
             this.memoryRegionsToolStripMenuItem,
             this.modulesToolStripMenuItem,
-            this.traceToolStripMenuItem});
+            this.traceToolStripMenuItem,
+            this.screenshotToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.windowToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.windowToolStripMenuItem.Text = "Window";
             // 
             // generalInfosToolStripMenuItem
             // 
             this.generalInfosToolStripMenuItem.Name = "generalInfosToolStripMenuItem";
-            this.generalInfosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.generalInfosToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.generalInfosToolStripMenuItem.Text = "General Infos";
             this.generalInfosToolStripMenuItem.Click += new System.EventHandler(this.generalInfosToolStripMenuItem_Click);
             // 
             // fileBrowserToolStripMenuItem
             // 
             this.fileBrowserToolStripMenuItem.Name = "fileBrowserToolStripMenuItem";
-            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.fileBrowserToolStripMenuItem.Text = "File Browser";
             this.fileBrowserToolStripMenuItem.Click += new System.EventHandler(this.fileBrowserToolStripMenuItem_Click);
             // 
             // memoryDumpToolStripMenuItem
             // 
             this.memoryDumpToolStripMenuItem.Name = "memoryDumpToolStripMenuItem";
-            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.memoryDumpToolStripMenuItem.Text = "Memory Dump";
             this.memoryDumpToolStripMenuItem.Click += new System.EventHandler(this.memoryDumpToolStripMenuItem_Click);
+            // 
+            // memoryRegionsToolStripMenuItem
+            // 
+            this.memoryRegionsToolStripMenuItem.Name = "memoryRegionsToolStripMenuItem";
+            this.memoryRegionsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.memoryRegionsToolStripMenuItem.Text = "Memory Regions";
+            this.memoryRegionsToolStripMenuItem.Click += new System.EventHandler(this.memoryRegionsToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.modulesToolStripMenuItem.Text = "Modules";
             this.modulesToolStripMenuItem.Click += new System.EventHandler(this.modulesToolStripMenuItem_Click);
             // 
             // traceToolStripMenuItem
             // 
             this.traceToolStripMenuItem.Name = "traceToolStripMenuItem";
-            this.traceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.traceToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.traceToolStripMenuItem.Text = "Trace";
             this.traceToolStripMenuItem.Click += new System.EventHandler(this.traceToolStripMenuItem_Click);
             // 
@@ -111,14 +120,14 @@
             this.breakOnThreadCreateToolStripMenuItem,
             this.recordBreakpointsToTraceToolStripMenuItem});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
-            this.optionToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.optionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.optionToolStripMenuItem.Text = "Option";
             // 
             // breakOnModuleLoadToolStripMenuItem
             // 
             this.breakOnModuleLoadToolStripMenuItem.CheckOnClick = true;
             this.breakOnModuleLoadToolStripMenuItem.Name = "breakOnModuleLoadToolStripMenuItem";
-            this.breakOnModuleLoadToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.breakOnModuleLoadToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.breakOnModuleLoadToolStripMenuItem.Text = "Break on Module Load";
             this.breakOnModuleLoadToolStripMenuItem.Click += new System.EventHandler(this.breakOnModuleLoadToolStripMenuItem_Click);
             // 
@@ -126,7 +135,7 @@
             // 
             this.breakOnThreadCreateToolStripMenuItem.CheckOnClick = true;
             this.breakOnThreadCreateToolStripMenuItem.Name = "breakOnThreadCreateToolStripMenuItem";
-            this.breakOnThreadCreateToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.breakOnThreadCreateToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.breakOnThreadCreateToolStripMenuItem.Text = "Break on Thread Create";
             this.breakOnThreadCreateToolStripMenuItem.Click += new System.EventHandler(this.breakOnThreadCreateToolStripMenuItem_Click);
             // 
@@ -134,16 +143,16 @@
             // 
             this.recordBreakpointsToTraceToolStripMenuItem.CheckOnClick = true;
             this.recordBreakpointsToTraceToolStripMenuItem.Name = "recordBreakpointsToTraceToolStripMenuItem";
-            this.recordBreakpointsToTraceToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.recordBreakpointsToTraceToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.recordBreakpointsToTraceToolStripMenuItem.Text = "Record Breakpoints to Trace";
             this.recordBreakpointsToTraceToolStripMenuItem.Click += new System.EventHandler(this.recordBreakpointsToTraceToolStripMenuItem_Click);
             // 
-            // memoryRegionsToolStripMenuItem
+            // screenshotToolStripMenuItem
             // 
-            this.memoryRegionsToolStripMenuItem.Name = "memoryRegionsToolStripMenuItem";
-            this.memoryRegionsToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.memoryRegionsToolStripMenuItem.Text = "Memory Regions";
-            this.memoryRegionsToolStripMenuItem.Click += new System.EventHandler(this.memoryRegionsToolStripMenuItem_Click);
+            this.screenshotToolStripMenuItem.Name = "screenshotToolStripMenuItem";
+            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.screenshotToolStripMenuItem.Text = "Screenshot";
+            this.screenshotToolStripMenuItem.Click += new System.EventHandler(this.screenshotToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -155,6 +164,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "XBox 360 Debugger by Warranty Voider";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -177,6 +187,7 @@
         private System.Windows.Forms.ToolStripMenuItem recordBreakpointsToTraceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem memoryRegionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem screenshotToolStripMenuItem;
     }
 }
 

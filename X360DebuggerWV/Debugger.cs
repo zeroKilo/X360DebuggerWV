@@ -31,7 +31,7 @@ namespace X360DebuggerWV
                 bool result = jtag.Connect(out jtag);
                 if (result)
                 {
-                    XboxConsole con = (XboxConsole)jtag;
+                    con = (XboxConsole)jtag;
                     con.OnStdNotify += con_OnStdNotify;
                     con.DebugTarget.ConnectAsDebugger("X360 Debugger WV", XboxDebugConnectFlags.Force);
                     isRunning = true;
@@ -44,6 +44,17 @@ namespace X360DebuggerWV
             catch { return false; }
         }
 
+        public static void Detach()
+        {
+            con.DebugTarget.DisconnectAsDebugger();
+        }
+
+        public static void Reboot()
+        {
+            Detach();
+            jtag.Reboot(null, null, null, XboxRebootFlags.Warm);
+        }
+
         private static void con_OnStdNotify(XboxDebugEventType EventCode, IXboxEventInfo EventInfo)
         {
             if (EventCode == XboxDebugEventType.ModuleLoad && breakOnModuleLoad) Pause();
@@ -51,6 +62,16 @@ namespace X360DebuggerWV
             Log.Write("Event: " + EventCode.ToString() + " ");
             switch (EventCode)
             {
+                case XboxDebugEventType.Exception:
+                    jtag.DebugTarget.FreeEventInfo(EventInfo.Info);
+                    if (EventInfo.Info.Message != null)
+                        Log.WriteLine("Exception @0x" + EventInfo.Info.Address.ToString("X8") + " \"" + EventInfo.Info.Message + "\"");
+                    else
+                        Log.WriteLine("Exception @0x" + EventInfo.Info.Address.ToString("X8"));
+                    breakThreadId = EventInfo.Info.Thread.ThreadId;
+                    refreshCPU = true;
+                    isRunning = false;
+                    break;
                 case XboxDebugEventType.ExecutionBreak:
                     if (recordTrace)
                     {
@@ -113,7 +134,7 @@ namespace X360DebuggerWV
             sb.AppendLine("Kernel Version\t\t: " + jtag.GetKernalVersion());
             sb.AppendLine("Features\t\t: " +  jtag.ConsoleFeatures);
             sb.AppendLine("Debug Target\t\t: " + jtag.DebugTarget.RunningProcessInfo.ProgramName);
-            sb.AppendLine("Is Running\t\t: " + isRunning);            
+            sb.AppendLine("Is Running\t\t: " + isRunning);             
             return sb.ToString();
         }
 
@@ -151,12 +172,14 @@ namespace X360DebuggerWV
 
         public static void RunXEX(string path)
         {
-            jtag.Reboot(path, Path.GetDirectoryName(path), "", XboxRebootFlags.Title);            
+            jtag.Reboot(path, Path.GetDirectoryName(path), "", XboxRebootFlags.Title);
+            jtag.DebugTarget.StopOn(XboxStopOnFlags.OnFirstChanceException, true);
         }
 
         public static void RunPausedXEX(string path)
         {
             jtag.Reboot(path, Path.GetDirectoryName(path), "", XboxRebootFlags.Stop);
+            jtag.DebugTarget.StopOn(XboxStopOnFlags.OnFirstChanceException, true);
         }
 
         public static string[] GetThreadsInfos()
@@ -333,6 +356,11 @@ namespace X360DebuggerWV
                 result.Add("BaseAddress=0x" + reg.BaseAddress.ToString("X8") + " RegionSize=0x" + reg.RegionSize.ToString("X8") + " Flags=\"" + flags + (contains != "" ? "\" Contains=\"" + contains + "\"" : ""));
             }
             return result.ToArray();
+        }
+
+        public static void MakeScreenshot(string filename)
+        {
+            jtag.ScreenShot(filename);
         }
     }
 }

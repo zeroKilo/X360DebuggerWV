@@ -25,13 +25,16 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DDSReader">
+      <HintPath>dll\DDSReader.dll</HintPath>
+    </Reference>
     <Reference Include="JRPC">
       <HintPath>dll\JRPC.dll</HintPath>
     </Reference>
@@ -45,9 +48,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="xdevkit">
-      <HintPath>dll\xdevkit.dll</HintPath>
+    <Reference Include="xdevkit, Version=2.0.21076.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>dll\xdevkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +68,12 @@
     <Compile Include="PPC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinScreenshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinScreenshot.Designer.cs">
+      <DependentUpon>WinScreenshot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tracer.cs" />
     <Compile Include="WinCPU.cs">
       <SubType>Form</SubType>
@@ -145,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinModules.resx">
       <DependentUpon>WinModules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinScreenshot.resx">
+      <DependentUpon>WinScreenshot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinTrace.resx">
       <DependentUpon>WinTrace.cs</DependentUpon>

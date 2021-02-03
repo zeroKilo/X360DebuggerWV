@@ -22,5 +22,10 @@ namespace X360DebuggerWV
             Log.box = rtb1;
             Log.WriteLine("Log initialized");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            rtb1.Text = "";
+        }
     }
 }

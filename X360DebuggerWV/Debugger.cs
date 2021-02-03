@@ -23,6 +23,7 @@ namespace X360DebuggerWV
         public static bool breakOnModuleLoad = false;
         public static bool breakOnThreadCreate = false;
         public static bool recordTrace = false;
+        public static bool _exit = false;
 
         public static bool Init()
         {
@@ -51,6 +52,7 @@ namespace X360DebuggerWV
 
         public static void Reboot()
         {
+            _exit = true;
             Detach();
             jtag.Reboot(null, null, null, XboxRebootFlags.Warm);
         }
@@ -107,7 +109,11 @@ namespace X360DebuggerWV
                     Log.WriteLine("Name=\"" + m.FullName + "\"");
                     break;
                 case XboxDebugEventType.DebugString:
-                    Log.WriteLine("\n" + EventInfo.Info.Message.Replace("\n", "\\n"));
+                    Log.WriteLine("");
+                    StringReader sr = new StringReader(EventInfo.Info.Message);
+                    string line;
+                    while ((line = sr.ReadLine()) != null && line.Trim() != "")
+                        Log.WriteLine("\t" + line);
                     break;
                 default:
                     Log.WriteLine("");
@@ -129,6 +135,8 @@ namespace X360DebuggerWV
 
         public static string GetGeneralInfos()
         {
+            if (_exit)
+                return "";
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name\t\t\t: " + jtag.Name);
             sb.AppendLine("IP Address\t\t: " + Helper.U32ToIP(jtag.IPAddress));

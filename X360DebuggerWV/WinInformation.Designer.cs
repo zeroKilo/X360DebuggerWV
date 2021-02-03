@@ -42,7 +42,7 @@
             this.rtb1.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.rtb1.Location = new System.Drawing.Point(0, 0);
             this.rtb1.Name = "rtb1";
-            this.rtb1.Size = new System.Drawing.Size(468, 162);
+            this.rtb1.Size = new System.Drawing.Size(468, 134);
             this.rtb1.TabIndex = 0;
             this.rtb1.Text = "";
             // 
@@ -55,7 +55,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 162);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 134);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(468, 22);
             this.statusStrip1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 184);
+            this.ClientSize = new System.Drawing.Size(468, 156);
             this.Controls.Add(this.rtb1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "WinInformation";

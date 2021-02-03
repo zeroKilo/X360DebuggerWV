@@ -233,6 +233,7 @@ namespace X360DebuggerWV
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             Debugger.Reboot();
+            Application.Exit();
         }
     }
 }

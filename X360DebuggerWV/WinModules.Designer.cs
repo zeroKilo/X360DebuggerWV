@@ -58,27 +58,27 @@
             this.showEntryPointInDumpToolStripMenuItem,
             this.showEntryPointInCPUToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(225, 70);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // showInDumpToolStripMenuItem
             // 
             this.showInDumpToolStripMenuItem.Name = "showInDumpToolStripMenuItem";
-            this.showInDumpToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showInDumpToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.showInDumpToolStripMenuItem.Text = "Show Base Address in Dump";
             this.showInDumpToolStripMenuItem.Click += new System.EventHandler(this.showInDumpToolStripMenuItem_Click);
             // 
             // showEntryPointInDumpToolStripMenuItem
             // 
             this.showEntryPointInDumpToolStripMenuItem.Name = "showEntryPointInDumpToolStripMenuItem";
-            this.showEntryPointInDumpToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showEntryPointInDumpToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.showEntryPointInDumpToolStripMenuItem.Text = "Show Entry Point in Dump";
             this.showEntryPointInDumpToolStripMenuItem.Click += new System.EventHandler(this.showEntryPointInDumpToolStripMenuItem_Click);
             // 
             // showEntryPointInCPUToolStripMenuItem
             // 
             this.showEntryPointInCPUToolStripMenuItem.Name = "showEntryPointInCPUToolStripMenuItem";
-            this.showEntryPointInCPUToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showEntryPointInCPUToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.showEntryPointInCPUToolStripMenuItem.Text = "Show Entry Point in CPU";
             this.showEntryPointInCPUToolStripMenuItem.Click += new System.EventHandler(this.showEntryPointInCPUToolStripMenuItem_Click);
             // 
@@ -98,7 +98,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(50, 22);
             this.toolStripButton1.Text = "Refresh";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -116,8 +116,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(642, 300);
-            this.splitContainer1.SplitterDistance = 136;
+            this.splitContainer1.Size = new System.Drawing.Size(642, 334);
+            this.splitContainer1.SplitterDistance = 151;
             this.splitContainer1.TabIndex = 3;
             // 
             // listBox1
@@ -129,7 +129,7 @@
             this.listBox1.IntegralHeight = false;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(642, 136);
+            this.listBox1.Size = new System.Drawing.Size(642, 151);
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -142,7 +142,7 @@
             this.listBox2.IntegralHeight = false;
             this.listBox2.Location = new System.Drawing.Point(0, 0);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(642, 160);
+            this.listBox2.Size = new System.Drawing.Size(642, 179);
             this.listBox2.TabIndex = 3;
             // 
             // contextMenuStrip2
@@ -151,20 +151,20 @@
             this.previewInMemoryDumpToolStripMenuItem,
             this.viewFullInMemoryDumpToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(198, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(219, 48);
             this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
             // 
             // previewInMemoryDumpToolStripMenuItem
             // 
             this.previewInMemoryDumpToolStripMenuItem.Name = "previewInMemoryDumpToolStripMenuItem";
-            this.previewInMemoryDumpToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.previewInMemoryDumpToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.previewInMemoryDumpToolStripMenuItem.Text = "Preview in Memory Dump";
             this.previewInMemoryDumpToolStripMenuItem.Click += new System.EventHandler(this.previewInMemoryDumpToolStripMenuItem_Click);
             // 
             // viewFullInMemoryDumpToolStripMenuItem
             // 
             this.viewFullInMemoryDumpToolStripMenuItem.Name = "viewFullInMemoryDumpToolStripMenuItem";
-            this.viewFullInMemoryDumpToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.viewFullInMemoryDumpToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.viewFullInMemoryDumpToolStripMenuItem.Text = "View Full in Memory Dump";
             this.viewFullInMemoryDumpToolStripMenuItem.Click += new System.EventHandler(this.viewFullInMemoryDumpToolStripMenuItem_Click);
             // 
@@ -172,7 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 325);
+            this.ClientSize = new System.Drawing.Size(642, 359);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "WinModules";

@@ -21,20 +21,34 @@ namespace X360DebuggerWV
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            OpenWindowLog();
+            Form[] forms = new Form[7];
+            forms[0] = OpenWindowLog();
             if (!Debugger.Init())
             {
                 MessageBox.Show("Cannot connect to console, please check Xbox 360 Neighborhood!");
                 this.Close();
                 return;
             }
-            OpenWindowInfos();
-            OpenWindowFileBrowser();
-            OpenWindowCPU();
-            OpenWindowModules();
-            OpenWindowTrace();
-            OpenWindowMemRegion();
-            OpenWindowScreenshot();
+            forms[1] = OpenWindowInfos();
+            forms[2] = OpenWindowFileBrowser();
+            forms[3] = OpenWindowCPU();
+            forms[4] = OpenWindowModules();
+            forms[5] = OpenWindowMemRegion();
+            forms[6] = OpenWindowScreenshot();
+            forms[0].Left =
+            forms[0].Top =
+            forms[3].Left =
+            forms[4].Top =
+            forms[5].Top = 0;
+            forms[3].Top = forms[0].Top + forms[0].Height;
+            forms[4].Left = forms[0].Left + forms[0].Width;
+            forms[5].Left = forms[4].Left + forms[4].Width;
+            forms[1].Left =
+            forms[2].Left = forms[3].Width;
+            forms[6].Top =
+            forms[1].Top = forms[5].Top + forms[5].Height;
+            forms[2].Top = forms[1].Top + forms[1].Height;
+            forms[6].Left = forms[1].Left + forms[1].Width;
         }
 
         private void generalInfosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,55 +86,56 @@ namespace X360DebuggerWV
             OpenWindowMemRegion();
         }
 
-        private void OpenWindowInfos()
+        private Form OpenWindowInfos()
         {
-            OpenWindow(new WinInformation());
+            return OpenWindow(new WinInformation());
         }
 
-        private void OpenWindowFileBrowser()
+        private Form OpenWindowFileBrowser()
         {
-            OpenWindow(new WinFileBrowser());
+            return OpenWindow(new WinFileBrowser());
         }
 
-        private void OpenWindowLog()
+        private Form OpenWindowLog()
         {
-            OpenWindow(new WinLog());
+            return OpenWindow(new WinLog());
         }
 
-        private void OpenWindowCPU()
+        private Form OpenWindowCPU()
         {
-            OpenWindow(new WinCPU());
+            return OpenWindow(new WinCPU());
         }
 
-        private void OpenWindowMemDump()
+        private Form OpenWindowMemDump()
         {
-            OpenWindow(new WinMemoryDump());
+            return OpenWindow(new WinMemoryDump());
         }
 
-        private void OpenWindowModules()
+        private Form OpenWindowModules()
         {
-            OpenWindow(new WinModules());
+            return OpenWindow(new WinModules());
         }
 
-        private void OpenWindowTrace()
+        private Form OpenWindowTrace()
         {
-            OpenWindow(new WinTrace());
+            return OpenWindow(new WinTrace());
         }
 
-        private void OpenWindowMemRegion()
+        private Form OpenWindowMemRegion()
         {
-            OpenWindow(new WinMemoryRegions());
+            return OpenWindow(new WinMemoryRegions());
         }
 
-        private void OpenWindowScreenshot()
+        private Form OpenWindowScreenshot()
         {
-            OpenWindow(new WinScreenshot());
+            return OpenWindow(new WinScreenshot());
         }
 
-        private void OpenWindow(Form f)
+        private Form OpenWindow(Form f)
         {
             f.MdiParent = this;
             f.Show();
+            return f;
         }
 
         private void breakOnModuleLoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,7 +158,11 @@ namespace X360DebuggerWV
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Debugger.Detach();
+            try
+            {
+                Debugger.Detach();
+            }
+            catch { }
         }
 
         private void screenshotToolStripMenuItem_Click(object sender, EventArgs e)
